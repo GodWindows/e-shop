@@ -3,3 +3,6 @@ Allow admins to register categories without images ------- DONE
 Allow admins to edit categories' images  ------- DONE
 Allow admins to edit products' images ------- DONE
 Allow admins to delete products' images
+ne pas pouvoir s'inscrire
+paiement via fedapay
+panier
