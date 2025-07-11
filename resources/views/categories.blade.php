@@ -68,9 +68,9 @@
                                         <x-input-label for="catname" :value="__('Nom')" style="margin-left: 66px" />
                                         <div class="flex flex-row">
                                             <label for="selectImage{{ $category->id }}">
-                                                <img id="preview{{ $category->id }}" src="{{asset('storage/' . $category->image )}}" alt="votre image" class="mt-3" width="50px"/>
+                                                <img id="preview{{ $category->id }}" src=" {{asset('storage/' . $category->image )}}" alt="votre image" class="mt-3" width="50px"/>
                                             </label>
-                                            <input type="file" hidden accept="image/png, image/gif, image/jpeg, image/jpg" class="form-control" name="categoryImage" @error('categoryImage') is-invalid @enderror id="selectImage{{ $category->id }}">
+                                            <input type="file" hidden accept="image/png, image/gif, image/jpeg,  image/jpg, image/webp" class="form-control" name="categoryImage" @error('categoryImage') is-invalid @enderror id="selectImage{{ $category->id }}">
                                             <x-text-input id="catname" class="block mt-1 ml-4" type="text" name="catname" placeholder="Ex: Immobilier" required value="{{ $category->name }}"/>
                                         </div>
                                         <x-input-error :messages="$errors->get('catname')" class="mt-2"  style="margin-left: 50px"  />
@@ -81,8 +81,8 @@
                                             <x-modal name="delete{{$category->id}}" maxWidth="md">
                                                 <!-- Modal content -->
                                                 <div class="p-4">
-                                                    <h2 class="text-lg font-semibold">Voulez vous confirmer cette action ?</h2>
-                                                    <x-danger-button class=" mx-auto"> <a href="{{route('category.delete', $category->id)}}">Oui</a> </x-danger-button>
+                                                    <h2 class="text-lg font-semibold"> {{__('Voulez vous confirmer cette action ?')}}</h2>
+                                                    <x-danger-button class=" mx-auto"> <a href="{{route('category.delete', $category->id)}}">{{ __('Oui') }}</a> </x-danger-button>
                                                 </div>
                                             </x-modal>
 

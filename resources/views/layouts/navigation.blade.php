@@ -3,13 +3,19 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
-                <!-- Logo -->
+                <!-- Logo
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
-
+                 -->
+                <div class="col-lg-4 mt-4">
+                    <a href="{{ route('dashboard') }}" class="text-decoration-none">
+                        <span class="text-4xl uppercase text-primary bg-black px-2">{{ env('SHOP_NAME') }}</span>
+                        <span class="text-4xl uppercase text-black bg-primary px-2 -ml-1">Sarl</span>
+                    </a>
+                </div>
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">

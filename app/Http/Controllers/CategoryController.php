@@ -14,7 +14,7 @@ class CategoryController extends Controller
     {
         $request->validate([
             'categoryImage' => [
-                'mimes:jpeg,png,jpg,gif,jfif',
+                'mimes:jpeg,png,jpg,gif,jfif,webp',
                 'max:2048',
             ],
             'catname' => [
@@ -40,6 +40,10 @@ class CategoryController extends Controller
     {
         $category = Category::where('id', $request->input('id'))->firstOrFail();
         $request->validate([
+            'categoryImage' => [
+                'mimes:jpeg,png,jpg,gif,jfif,webp',
+                'max:2048',
+            ],
             'catname' => [
                 'required',
                 'string',

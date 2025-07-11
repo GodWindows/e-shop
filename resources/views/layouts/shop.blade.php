@@ -30,8 +30,8 @@
     <!-- Topbar Start -->
     <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
         <div class="col-lg-4">
-            <a href="" class="text-decoration-none">
-                <span class="h1 text-uppercase text-primary bg-dark px-2">Kleefh</span>
+            <a href="{{ route('welcome') }}" class="text-decoration-none">
+                <span class="h1 text-uppercase text-primary bg-dark px-2">{{ env('SHOP_NAME') }}</span>
                 <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Sarl</span>
             </a>
         </div>
@@ -73,8 +73,8 @@
             <div class="col-lg-9">
                 <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
                     <a href="" class="text-decoration-none d-block d-lg-none">
-                        <span class="h1 text-uppercase text-dark bg-light px-2">Multi</span>
-                        <span class="h1 text-uppercase text-light bg-primary px-2 ml-n1">Shop</span>
+                        <span class="h1 text-uppercase text-dark bg-light px-2">{{ env('SHOP_NAME') }}</span>
+                        <span class="h1 text-uppercase text-light bg-primary px-2 ml-n1">Sarl</span>
                     </a>
                     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>

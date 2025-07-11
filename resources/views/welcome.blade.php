@@ -1,7 +1,7 @@
 @extends('layouts.shop')
 
     @section('page_title')
-        Kleefh Sarl
+        {{ env('SHOP_NAME') }} Sarl
     @endsection
 
     @section('content')

@@ -39,15 +39,15 @@ class ProductController extends Controller
             ],
 
             'productImage1' => [
-                'mimes:jpeg,png,jpg,gif,jfif',
+                'mimes:jpeg,png,jpg,gif,jfif,webp',
                 'max:2048',
             ],
             'productImage2' => [
-                'mimes:jpeg,png,jpg,gif,jfif',
+                'mimes:jpeg,png,jpg,gif,jfif,webp',
                 'max:2048',
             ],
             'productImage3' => [
-                'mimes:jpeg,png,jpg,gif,jfif',
+                'mimes:jpeg,png,jpg,gif,jfif,webp',
                 'max:2048',
             ],
         ], [
@@ -112,15 +112,15 @@ class ProductController extends Controller
                 ],
 
                 'productImage1' => [
-                    'mimes:jpeg,png,jpg,gif,jfif',
+                    'mimes:jpeg,png,jpg,gif,jfif,webp',
                     'max:2048',
                 ],
                 'productImage2' => [
-                    'mimes:jpeg,png,jpg,gif,jfif',
+                    'mimes:jpeg,png,jpg,gif,jfif,webp',
                     'max:2048',
                 ],
                 'productImage3' => [
-                    'mimes:jpeg,png,jpg,gif,jfif',
+                    'mimes:jpeg,png,jpg,gif,jfif,webp',
                     'max:2048',
                 ],
             ], [
@@ -149,15 +149,15 @@ class ProductController extends Controller
                 ],
 
                 'categoryImage1' => [
-                    'mimes:jpeg,png,jpg,gif,jfif',
+                    'mimes:jpeg,png,jpg,gif,jfif,webp',
                     'max:2048',
                 ],
                 'categoryImage2' => [
-                    'mimes:jpeg,png,jpg,gif,jfif',
+                    'mimes:jpeg,png,jpg,gif,jfif,webp',
                     'max:2048',
                 ],
                 'categoryImage3' => [
-                    'mimes:jpeg,png,jpg,gif,jfif',
+                    'mimes:jpeg,png,jpg,gif,jfif,webp',
                     'max:2048',
                 ],
             ], [

@@ -43,7 +43,7 @@
                         <x-input-error :messages="$errors->get('catname')" class="mt-2" />
 
                         <x-input-label for="categoryImage" :value="__('Image')" class="mt-4" />
-                        <input type="file"accept="image/png, image/gif, image/jpeg, image/jpg" class="form-control" name="categoryImage" @error('categoryImage') is-invalid @enderror id="selectImage">
+                        <input type="file"accept="image/png, image/gif, image/jpeg, image/jpg, image/webp" class="form-control" name="categoryImage" @error('categoryImage') is-invalid @enderror id="selectImage">
                         <x-input-error :messages="$errors->get('categoryImage')" class="mt-2" />
                         <img id="preview" src="#" alt="votre image" class="mt-3" width="150px" style="display:none;"/>
 
@@ -81,21 +81,21 @@
                         <div class="flex flex-col lg:flex-row">
                             <div>
                                 <x-input-label for="productImage1" :value="__('Image 1')" class="mt-4" />
-                                <input type="file"accept="image/png, image/gif, image/jpeg, image/jpg" class="form-control" name="productImage1" @error('productImage1') is-invalid @enderror id="selectImage1">
+                                <input type="file"accept="image/png, image/gif, image/jpeg, image/jpg, image/webp" class="form-control" name="productImage1" @error('productImage1') is-invalid @enderror id="selectImage1">
                                 <x-input-error :messages="$errors->get('productImage1')" class="mt-2" />
                                 <img id="preview1" src="#" alt="votre image" class="mt-3" width="150px" style="display:none;"/>
                             </div>
 
                             <div>
                                 <x-input-label for="productImage2" :value="__('Image 2')" class="mt-4" />
-                                <input type="file"accept="image/png, image/gif, image/jpeg, image/jpg" class="form-control" name="productImage2" @error('productImage2') is-invalid @enderror id="selectImage2">
+                                <input type="file"accept="image/png, image/gif, image/jpeg, image/jpg, image/webp" class="form-control" name="productImage2" @error('productImage2') is-invalid @enderror id="selectImage2">
                                 <x-input-error :messages="$errors->get('productImage2')" class="mt-2" />
                                 <img id="preview2" src="#" alt="votre image" class="mt-3" width="150px" style="display:none;"/>
                             </div>
 
                             <div>
                                 <x-input-label for="productImage3" :value="__('Image 3')" class="mt-4" />
-                                <input type="file"accept="image/png, image/gif, image/jpeg, image/jpg" class="form-control" name="productImage3" @error('productImage3') is-invalid @enderror id="selectImage3">
+                                <input type="file"accept="image/png, image/gif, image/jpeg, image/jpg, image/webp" class="form-control" name="productImage3" @error('productImage3') is-invalid @enderror id="selectImage3">
                                 <x-input-error :messages="$errors->get('productImage3')" class="mt-2" />
                                 <img id="preview3" src="#" alt="votre image" class="mt-3" width="150px" style="display:none;"/>
                             </div>

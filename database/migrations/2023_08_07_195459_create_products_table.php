@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('price');
             $table->timestamps();
 
-            $table->foreign('category_id')->references('id')->on('category');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 
