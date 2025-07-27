@@ -19,7 +19,7 @@ yarn-error.log
 /.vscode
 composer.lock
 package-lock.json
-bootstrap/cache/.gitignore
+/bootstrap/cache/.gitignore
 /storage/app/.gitignore
 /storage/app/public/.gitignore
 /storage/framework/.gitignore
