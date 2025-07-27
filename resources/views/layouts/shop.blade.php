@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <title>@yield('page_title')</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
-
+    <meta content="{{ env('APP_DESCRIPTION', 'This is a web store')}}" name="keywords">
+    <meta content="{{ env('APP_DESCRIPTION', 'This is a web store')}}" name="description">
+    
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
@@ -48,8 +48,8 @@
             </form>
         </div>
         <div class="col-lg-4 col-6 text-right">
-            <p class="m-0">Customer Service</p>
-            <h5 class="m-0">+012 345 6789</h5>
+            <p class="m-0">Service Client</p>
+            <h5 class="m-0">+229 01 23 45 67 89</h5>
         </div>
     </div>
     <!-- Topbar End -->
