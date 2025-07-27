@@ -107,7 +107,7 @@
                                                 <input type="file"accept="image/png, image/gif, image/jpeg,  image/jpg, image/webp" class="form-control" name="productImage1" @error('productImage1') is-invalid @enderror id="selectImage1{{$product->id}}">
                                                 <x-input-error :messages="$errors->get('productImage1')" class="mt-2" />
                                                 @if (json_decode($product->images)[0]!="")
-                                                    <img id="oldpreview1{{$product->id}}" src="{{asset(json_decode($product->images)[0])}}" alt="votre image" class="mt-3" width="150px" style=""/>
+                                                    <img id="oldpreview1{{$product->id}}" src="{{asset('storage/'.json_decode($product->images)[0])}}" alt="votre image" class="mt-3" width="150px" style=""/>
                                                 @endif
                                                 <img id="preview1{{$product->id}}" src="#" alt="votre image" class="mt-3" width="150px" style="display:none;"/>
                                             </div>
