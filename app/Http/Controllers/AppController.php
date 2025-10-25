@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class AppController extends Controller
 {
-    public function welcome() {
+    public function welcome(Request $request) {
         $categories = Category::all();
         $lastFourProducts = Product::latest()->take(4)->get();
         return view('welcome', [

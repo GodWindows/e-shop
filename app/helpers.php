@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Product;
+use Illuminate\Http\Request;
 
     function image(Product $product)  {
         for ($i=0; $i < 3; $i++) {
@@ -20,7 +21,7 @@ use App\Models\Product;
         return array_values($filteredArray);
     }
 
-     function getRelatedProducts(Product $product)  {
+    function getRelatedProducts(Product $product)  {
         // Get the category ID of the current product
         $categoryId = $product->category_id;
 

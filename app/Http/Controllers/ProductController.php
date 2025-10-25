@@ -188,15 +188,21 @@ class ProductController extends Controller
         return redirect()->back()->with('success', 'Product successfully updated');
     }
 
-    public function view($id)
+    public function view(Request $request, $id)
     {
         $product = Product::find($id);
         $relatedProducts = getRelatedProducts($product);
         $categories = Category::all();
+
+        $cart = getCartFromCookie($request);
+        $cartItemsCount = count($cart);
+
         return view('product', [
             "product" => $product,
             "categories" => $categories,
             "relatedProducts" => $relatedProducts,
+            "cart" => $cart,
+            "cartItemsCount" => $cartItemsCount,
         ]);
     }
 
