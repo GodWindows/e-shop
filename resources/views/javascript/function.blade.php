@@ -44,7 +44,7 @@
         itemsCountTag.innerHTML = itemsCount;
     }
     function addToCart(productId) {
-        productAmount = Number(document.querySelector('#itemCount').value);
+        productAmount = Number(document.querySelector('#itemCount_'+productId).value);
          
         //on récupère le panier
         var cart = getCartFromCookie();
@@ -59,4 +59,40 @@
         refreshCartCount();
         
     }
+
+function editAmountInCart(productId) {
+    productAmount = Number(document.querySelector('#itemCount_'+productId).value);
+     
+    //on récupère le panier
+    var cart = getCartFromCookie();
+    console.log([...cart]);
+    var productCount = Number(cart.get(productId)) ?? 0;
+    var newAmount = productAmount;
+    cart.set(productId, newAmount);
+    saveCartInCookie(cart, 7);
+    console.log("addToCart called");
+    console.log(cart);
+    if (newAmount <= 0) {
+        deleteFromCart(productId);
+    }
+    refreshCartCount();
+    
+}
+
+function deleteFromCart(productId) {
+     
+    //on récupère le panier
+    var cart = getCartFromCookie();
+
+    cart.delete(productId);
+    console.log([...cart]);
+    saveCartInCookie(cart, 7);
+    console.log("addToCart called");
+    console.log(cart);
+    
+    refreshCartCount();
+
+    window.location.reload();
+    
+}
 </script>

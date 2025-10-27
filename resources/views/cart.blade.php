@@ -69,19 +69,19 @@
                         </h3>
                         <div class="d-flex align-items-center mb-4 pt-2">
                             <div class="input-group quantity mr-3" style="width: 130px;">
-                                <div class="input-group-btn">
+                                <div class="input-group-btn" onclick="editAmountInCart({{$product->id}})">
                                     <button class="btn btn-primary btn-minus">
                                         <i class="fa fa-minus"></i>
                                     </button>
                                 </div>
-                                <input type="text" class="form-control bg-secondary border-0 text-center" value="{{ $amount }}" id=itemCount>
+                                <input type="text" class="form-control bg-secondary border-0 text-center" value="{{ $amount }}" id="itemCount_{{ $product->id  }}">
                                 <div class="input-group-btn">
-                                    <button class="btn btn-primary btn-plus">
+                                    <button class="btn btn-primary btn-plus" onclick="editAmountInCart({{$product->id}})">
                                         <i class="fa fa-plus"></i>
                                     </button>
                                 </div>
                             </div>
-                            <button class="btn btn-primary px-3" onclick="addToCart({{$product->id}})"><i class="fa fa-shopping-cart mr-1"></i> {{ __("Ajouter au panier") }}</button>
+                            <button class="btn btn-primary px-3" onclick="deleteFromCart({{$product->id}})"><i class="fa fa-shopping-cart mr-1"></i> {{ __("Supprimer du panier") }}</button>
                         </div>
                     </div>
                 </div>
