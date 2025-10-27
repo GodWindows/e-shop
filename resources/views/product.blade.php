@@ -10,9 +10,7 @@
         <div class="row px-xl-5">
             <div class="col-12">
                 <nav class="breadcrumb bg-light mb-30">
-                    <a class="breadcrumb-item text-dark" href="#">Home</a>
-                    <a class="breadcrumb-item text-dark" href="#">Shop</a>
-                    <span class="breadcrumb-item active">Shop Detail</span>
+                    <a class="breadcrumb-item text-dark" href="{{route('cart')}}">{{ ("Aller au panier") }}</a>
                 </nav>
             </div>
         </div>
@@ -70,31 +68,14 @@
                                     <i class="fa fa-minus"></i>
                                 </button>
                             </div>
-                            <input type="text" class="form-control bg-secondary border-0 text-center" value="1">
+                            <input type="text" class="form-control bg-secondary border-0 text-center" value="1" id=itemCount>
                             <div class="input-group-btn">
                                 <button class="btn btn-primary btn-plus">
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </div>
                         </div>
-                        <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
-                    </div>
-                    <div class="d-flex pt-2">
-                        <strong class="text-dark mr-2">Share on:</strong>
-                        <div class="d-inline-flex">
-                            <a class="text-dark px-2" href="">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a class="text-dark px-2" href="">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a class="text-dark px-2" href="">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                            <a class="text-dark px-2" href="">
-                                <i class="fab fa-pinterest"></i>
-                            </a>
-                        </div>
+                        <button class="btn btn-primary px-3" onclick="addToCart({{$product->id}})"><i class="fa fa-shopping-cart mr-1"></i> {{ __("Ajouter au panier") }}</button>
                     </div>
                 </div>
             </div>
@@ -122,22 +103,23 @@
     <div class="container-fluid py-5">
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Produits qui pourraient vous intéresser</span></h2>
         <div class="row px-xl-5">
-            @foreach ($relatedProducts as $relatedProduct )
+            @foreach ($relatedProducts as $product )
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                    <div class="product-item bg-light mb-4">
-                        <div class="product-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100 cursor-pointer" src="{{asset('storage/'.image($relatedProduct))}}" alt="Product Image">
-                            <div class="product-action" onclick="window.location = {{route('product.view',$relatedProduct->id)}};">
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                            </div>
+                    <div class="product-item bg-light mb-4 cursor-pointer" onclick="window.location='{{route('product.view',$product->id)}}'">
+                        
+                        <!-- Updated Image Container -->
+                        <div class="product-img-fixed">
+                            <img class="cursor-pointer" src="{{asset('storage/'.image($product))}}" alt="Product Image"  >
                         </div>
+                        <!-- End Updated Image Container -->
+
                         <div class="text-center py-4">
-                            <a class="h6 text-decoration-none text-truncate" href="{{route('product.view',$relatedProduct->id)}}">{{ $relatedProduct->name }}</a>
+                            <a class="h6 text-decoration-none text-truncate" href="{{route('product.view',$product->id)}}">{{ $product->name }}</a>
                             <div class="d-flex align-items-center justify-content-center mt-2">
-                                @if ($relatedProduct->discount_price == -1)
-                                    <h5>{{ $relatedProduct->price }} F</h5>
+                                @if ($product->discount_price == -1)
+                                    <h5>{{ $product->price }} F</h5>
                                 @else
-                                    <h5>{{ $relatedProduct->discount_price }} F</h5><h6 class="text-muted ml-2"><del>{{ $relatedProduct->price }} F</del></h6>
+                                    <h5>{{ $product->discount_price }} F</h5><h6 class="text-muted ml-2"><del>{{ $product->price }} F</del></h6>
                                 @endif
 
                             </div>
@@ -151,4 +133,3 @@
 
 
 @endsection
-

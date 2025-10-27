@@ -4,6 +4,7 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 /*GUEST SIDE */
 Route::get('/', [AppController::class, 'welcome'])->name('welcome');
 Route::get('/product/{id}', [ProductController::class, 'view'])->name('product.view');
+Route::get('/cart/', [CartController::class, 'view'])->name('cart');
 
 /* ADMIN SIDE */
 Route::middleware(['auth', 'verified'])->group(function () {

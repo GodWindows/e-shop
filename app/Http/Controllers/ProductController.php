@@ -194,15 +194,10 @@ class ProductController extends Controller
         $relatedProducts = getRelatedProducts($product);
         $categories = Category::all();
 
-        $cart = getCartFromCookie($request);
-        $cartItemsCount = count($cart);
-
         return view('product', [
             "product" => $product,
             "categories" => $categories,
             "relatedProducts" => $relatedProducts,
-            "cart" => $cart,
-            "cartItemsCount" => $cartItemsCount,
         ]);
     }
 
