@@ -2,6 +2,13 @@
 
     refreshCartCount();
 
+    function showToast(msg) {
+        const t = document.getElementById('toast');
+        t.textContent = msg;
+        t.style.display = 'block';
+        setTimeout(() => t.style.display = 'none', 2000);
+    }
+
     // Function to create the cookie 
     function saveCartInCookie(value, days) {
         let expires;
@@ -31,7 +38,8 @@
         .find((row) => row.startsWith(escapeName))
         ?.split("=")[1];
         var value = unescape(cookieValue);
-        return value ? new Map(JSON.parse(value)) : new Map([]);
+        
+        return (cookieValue) ? new Map(JSON.parse(value)) : new Map([]);
     }
 
     function refreshCartCount() {
@@ -45,17 +53,18 @@
     }
     function addToCart(productId) {
         productAmount = Number(document.querySelector('#itemCount_'+productId).value);
-         
+        
         //on récupère le panier
         var cart = getCartFromCookie();
-        console.log([...cart]);
-        var productCount = Number(cart.get(productId)) ?? 0;
+        console.log(cart);
+        var productCount = Number(cart.get(productId)) || 0;
+        console.log("productCount : "+productCount);
         var newAmount = productCount + productAmount;
         cart.set(productId, newAmount);
         saveCartInCookie(cart, 7);
         console.log("addToCart called");
         console.log(cart);
-        
+        showToast("Ajouté au panier!");
         refreshCartCount();
         
     }
@@ -66,7 +75,7 @@ function editAmountInCart(productId) {
     //on récupère le panier
     var cart = getCartFromCookie();
     console.log([...cart]);
-    var productCount = Number(cart.get(productId)) ?? 0;
+    var productCount = Number(cart.get(productId)) || 0;
     var newAmount = productAmount;
     cart.set(productId, newAmount);
     saveCartInCookie(cart, 7);
@@ -76,6 +85,7 @@ function editAmountInCart(productId) {
         deleteFromCart(productId);
     }
     refreshCartCount();
+    showToast("Panier modifié");
     
 }
 
@@ -91,6 +101,7 @@ function deleteFromCart(productId) {
     console.log(cart);
     
     refreshCartCount();
+    showToast("Supprimé");
 
     window.location.reload();
     

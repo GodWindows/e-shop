@@ -187,6 +187,10 @@
     </div>
     <!-- Footer End -->
 
+    <!-- Toast Notification -->
+    <div id="toast" style="display:none;position:fixed;top:20px;right:20px;
+    background:#4caf50;color:#fff;padding:10px 20px;border-radius:8px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.2);">Saved!</div>
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
@@ -206,8 +210,29 @@
     <script src="{{asset('js/main.js')}}"></script>
 
     <!-- Other Javascript Scripts-->
-    @include('javascript.function')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    <script>
+        // Set the options that I want
+        toastr.options = {
+            "closeButton": true,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-bottom-center",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
+    </script>
+    @include('javascript.function')
     @yield('scripts')
 </body>
 

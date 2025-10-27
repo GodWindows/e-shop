@@ -5,6 +5,17 @@
 @endsection
 
 @section('content')
+<!-- Breadcrumb Start -->
+<div class="container-fluid">
+   <div class="row px-xl-5">
+       <div class="col-12">
+           <nav class="breadcrumb bg-light mb-30">
+               <a class="breadcrumb-item text-dark" href="{{route('welcome')}}">{{ ("Cliquez ici pour retourner à la boutique") }}</a>
+           </nav>
+       </div>
+   </div>
+</div>
+<!-- Breadcrumb End -->
 
     @php
     
@@ -17,6 +28,7 @@
             }
         }else {
             $cartArray = array();
+            echo "<h3>Votre panier est vide</h3>";
         }
     @endphp
     @foreach ($cartArray as $id => $amount)
