@@ -8,11 +8,15 @@
 
     @php
     
-        $cookieData = $_COOKIE["cart"]; 
-        $cookieData = json_decode($cookieData, true);
-        $cartArray= array();
-        foreach ($cookieData as $row) {
-            $cartArray[$row[0]] = $row[1];
+        if (isset($_COOKIE['cart'])) {
+            $cookieData = $_COOKIE["cart"]; 
+            $cookieData = json_decode($cookieData, true);
+            $cartArray= array();
+            foreach ($cookieData as $row) {
+                $cartArray[$row[0]] = $row[1];
+            }
+        }else {
+            $cartArray = array();
         }
     @endphp
     @foreach ($cartArray as $id => $amount)

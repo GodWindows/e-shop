@@ -10,12 +10,10 @@ class CartController extends Controller
 {
     public function view(Request $request)
     {
-        $products = Product::all();
         $categories = Category::all();
 
 
         return view('cart', [
-            "products" => $products,
             "categories" => $categories,
         ]);
     }

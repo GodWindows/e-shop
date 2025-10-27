@@ -10,8 +10,10 @@ class AppController extends Controller
 {
     public function welcome(Request $request) {
         $categories = Category::all();
+        $allProducts = Product::all();
         return view('welcome', [
             "categories" => $categories,
+            "products" => $allProducts,
         ]);
     }
 }
