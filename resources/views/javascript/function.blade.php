@@ -86,6 +86,11 @@ function editAmountInCart(productId) {
     }
     refreshCartCount();
     showToast("Panier modifié");
+
+    // Update the visual total if function exists
+    if (typeof window.updateCartTotalDisplay === 'function') {
+        window.updateCartTotalDisplay();
+    }
     
 }
 
@@ -103,7 +108,22 @@ function deleteFromCart(productId) {
     refreshCartCount();
     showToast("Supprimé");
 
-    window.location.reload();
+    // Update the visual total if function exists
+    if (typeof window.updateCartTotalDisplay === 'function') {
+        window.updateCartTotalDisplay();
+    }
+
+    // Remove the element from the DOM
+    const row = document.getElementById('product-row-' + productId);
+    if (row) {
+        row.remove();
+    }
+    
+    // Check if cart is empty after deletion
+    if (cart.size === 0) {
+        // Optionally show "Cart is empty" message or reload to show empty state
+        window.location.reload();
+    }
     
 }
 </script>

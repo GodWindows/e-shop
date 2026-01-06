@@ -41,7 +41,7 @@
             $cartTotalAmount += ($product->discount_price == -1 ? $product->price : $product->discount_price) * $amount;
         @endphp
 
-        <div class="container-fluid pb-5">
+        <div class="container-fluid pb-5" id="product-row-{{$product->id}}">
             <div class="row px-xl-5">
                 <div class="col-lg-5 mb-30">
                     <div id="product-carousel" class="carousel slide" data-ride="carousel">
@@ -90,7 +90,7 @@
                                         <i class="fa fa-minus"></i>
                                     </button>
                                 </div>
-                                <input type="text" class="form-control bg-secondary border-0 text-center" value="{{ $amount }}" id="itemCount_{{ $product->id  }}">
+                                <input type="text" class="form-control bg-secondary border-0 text-center" value="{{ $amount }}" id="itemCount_{{ $product->id  }}" data-price="{{ $product->discount_price == -1 ? $product->price : $product->discount_price }}">
                                 <div class="input-group-btn">
                                     <button class="btn btn-primary btn-plus" onclick="editAmountInCart({{$product->id}})">
                                         <i class="fa fa-plus"></i>
@@ -104,7 +104,26 @@
             </div>
         </div>
     @endforeach
-    <button id="pay-btn" class="pay-btn-custom">Passer au paiement</button>
+    <div class="row px-xl-5">
+        <div class="col-lg-8"></div>
+        <div class="col-lg-4">
+            <div class="bg-light p-30 mb-5">
+                <div class="border-bottom pb-2">
+                    <div class="d-flex justify-content-between mb-3">
+                        <h6>Sous-total</h6>
+                        <h6><span id="cart-subtotal">{{ $cartTotalAmount }}</span> F</h6>
+                    </div>
+                </div>
+                <div class="pt-2">
+                    <div class="d-flex justify-content-between mt-2">
+                        <h5>Total</h5>
+                        <h5><span id="cart-total">{{ $cartTotalAmount }}</span> F</h5>
+                    </div>
+                    <button id="pay-btn" class="btn btn-block btn-primary font-weight-bold my-3 py-3">Passer au paiement</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Payment Info Modal -->
     <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
@@ -125,25 +144,13 @@
                         </div>
                         <div class="form-group">
                             <label for="userPhone">Téléphone</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <select class="custom-select" id="countryCode" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
-                                        <option value="+229" selected>+229 (Bénin)</option>
-                                        <option value="+228">+228 (Togo)</option>
-                                        <option value="+225">+225 (CI)</option>
-                                        <option value="+221">+221 (Sénégal)</option>
-                                        <option value="+33">+33 (France)</option>
-                                        <option value="+1">+1 (USA)</option>
-                                    </select>
-                                </div>
-                                <input type="tel" class="form-control" id="userPhone" placeholder="Ex: 97000000" required>
-                            </div>
+                            <input type="tel" class="form-control" id="userPhone" placeholder="Ex: 97000000" required>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                    <button type="button" class="btn btn-primary" id="confirmPayment">Validé et Payer</button>
+                    <button type="button" class="btn btn-primary" id="confirmPayment">Valider et Payer</button>
                 </div>
             </div>
         </div>
@@ -158,17 +165,31 @@
         <script src="https://cdn.fedapay.com/checkout.js?v=1.1.7"></script>
     
         <script type="text/javascript">
-            let widget =  FedaPay.init({
-                public_key: 'pk_sandbox_1BC-3mOEqiAXxg5EWRe0Wude',
-                transaction: {
-                    amount: {{ $cartTotalAmount }} ,
-                    description: 'Acheter mon produit',
-                    custom_metadata:{
-                        foo: 'bar'
+            // Function to calculate total dynamically from DOM
+            function getCartTotal() {
+                let total = 0;
+                // Select all quantity inputs
+                const inputs = document.querySelectorAll('input[id^="itemCount_"]');
+                inputs.forEach(input => {
+                    const price = parseFloat(input.dataset.price);
+                    const quantity = parseInt(input.value);
+                    if (!isNaN(price) && !isNaN(quantity)) {
+                        total += price * quantity;
                     }
-                },
-            });
-            
+                });
+                return total;
+            }
+
+            // Global function to update the display
+            window.updateCartTotalDisplay = function() {
+                const total = getCartTotal();
+                const totalElement = document.getElementById('cart-total');
+                const subTotalElement = document.getElementById('cart-subtotal');
+                
+                if (totalElement) totalElement.innerText = total;
+                if (subTotalElement) subTotalElement.innerText = total;
+            };
+
             let btn = document.getElementById('pay-btn');
             
             // Intercept click to show modal
@@ -181,10 +202,9 @@
             document.getElementById('confirmPayment').addEventListener('click', () => {
                 let name = document.getElementById('userName').value.trim();
                 let phone = document.getElementById('userPhone').value.trim();
-                let countryCode = document.getElementById('countryCode').value;
 
                 if (name === "" || phone === "") {
-                    // Simple validation feedback (can be improved with Bootstrap validation styles)
+                    // Simple validation feedback
                     alert("Veuillez remplir le nom et le numéro de téléphone.");
                     return;
                 }
@@ -192,9 +212,23 @@
                 // Close modal
                 $('#paymentModal').modal('hide');
 
-                // Trigger Payment
-                // Ideally, we might want to update the widget custom metadata or customer info here
-                // But simply opening it as requested:
+                // Dynamic Total Calculation
+                let currentTotal = getCartTotal();
+                
+                // Initialize FedaPay with dynamic amount and custom metadata
+                let widget = FedaPay.init({
+                    public_key: 'pk_sandbox_1BC-3mOEqiAXxg5EWRe0Wude',
+                    transaction: {
+                        amount: currentTotal,
+                        description: 'Acheter mon produit',
+                        custom_metadata: {
+                            customer_name: name,
+                            customer_phone: phone
+                        }
+                    }
+                });
+
+                // Open widget
                 widget.open();
             });
         </script>
