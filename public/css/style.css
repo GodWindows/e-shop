@@ -9765,3 +9765,25 @@ a.text-dark:hover, a.text-dark:focus {
     height: 100%;
     object-fit: cover; 
 }
+/* Custom Pay Button Styles from User Request */
+.pay-btn-custom {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #FFD333; /* Primary theme color */
+    color: #3D464D;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pay-btn-custom:hover {
+    background-color: #e6b400;
+    color: #212529;
+    text-decoration: none;
+}
