@@ -35,3 +35,5 @@ use App\Http\Controllers\CartController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/payment_callback', [App\Http\Controllers\PaymentController::class, 'handleCallback']);
