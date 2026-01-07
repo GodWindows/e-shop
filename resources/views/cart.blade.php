@@ -85,14 +85,14 @@
                         </h3>
                         <div class="d-flex align-items-center mb-4 pt-2">
                             <div class="input-group quantity mr-3" style="width: 130px;">
-                                <div class="input-group-btn" onclick="editAmountInCart({{$product->id}})">
+                                <div class="input-group-btn">
                                     <button class="btn btn-primary btn-minus">
                                         <i class="fa fa-minus"></i>
                                     </button>
                                 </div>
-                                <input type="text" class="form-control bg-secondary border-0 text-center" value="{{ $amount }}" id="itemCount_{{ $product->id  }}" data-price="{{ $product->discount_price == -1 ? $product->price : $product->discount_price }}">
+                                <input type="text" class="form-control bg-secondary border-0 text-center" value="{{ $amount }}" id="itemCount_{{ $product->id  }}" data-price="{{ $product->discount_price == -1 ? $product->price : $product->discount_price }}" onchange="editAmountInCart({{$product->id}})">
                                 <div class="input-group-btn">
-                                    <button class="btn btn-primary btn-plus" onclick="editAmountInCart({{$product->id}})">
+                                    <button class="btn btn-primary btn-plus">
                                         <i class="fa fa-plus"></i>
                                     </button>
                                 </div>
@@ -180,6 +180,25 @@
                 return total;
             }
 
+            // Function to get all cart items details
+            function getCartItems() {
+                let items = [];
+                const inputs = document.querySelectorAll('input[id^="itemCount_"]');
+                inputs.forEach(input => {
+                    const id = input.id.replace('itemCount_', '');
+                    const price = parseFloat(input.dataset.price);
+                    const quantity = parseInt(input.value);
+                    if (!isNaN(price) && !isNaN(quantity)) {
+                        items.push({
+                            product_id: id,
+                            quantity: quantity,
+                            price: price
+                        });
+                    }
+                });
+                return JSON.stringify(items);
+            }
+
             // Global function to update the display
             window.updateCartTotalDisplay = function() {
                 const total = getCartTotal();
@@ -214,6 +233,7 @@
 
                 // Dynamic Total Calculation
                 let currentTotal = getCartTotal();
+                let cartItems = getCartItems();
                 
                 // Initialize FedaPay with dynamic amount and custom metadata
                 let widget = FedaPay.init({
@@ -223,7 +243,8 @@
                         description: 'Acheter mon produit',
                         custom_metadata: {
                             customer_name: name,
-                            customer_phone: phone
+                            customer_phone: phone,
+                            cart_items: cartItems
                         }
                     }
                 });
