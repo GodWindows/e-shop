@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use App\Models\Transaction as TransactionModel;
 use App\Models\TransactionDetail;
+use App\Models\Product;
 use FedaPay\FedaPay;
 use FedaPay\Transaction;
 
@@ -50,7 +51,26 @@ class PaymentController extends Controller
                 
                 // Decode cart items
                 $cartItemsJson = $customMetadata['cart_items'] ?? '[]';
-                $cartItems = json_decode($cartItemsJson, true); // Assuming it's a JSON string
+                $cartItems = json_decode($cartItemsJson, true); 
+
+                // --- VALIDATION: Verify Amount against Database Prices ---
+                $expectedAmount = 0;
+                if (is_array($cartItems)) {
+                    foreach ($cartItems as $item) {
+                        $product = Product::find($item['product_id']);
+                        if ($product) {
+                            $price = ($product->discount_price == -1) ? $product->price : $product->discount_price;
+                            $expectedAmount += $price * $item['quantity'];
+                        }
+                    }
+                }
+
+                // Check if paid amount matches expected amount
+                if ($expectedAmount != $entity['amount']) {
+                    Log::error("Transaction Validation Failed: Amount mismatch for ref {$entity['reference']}. Database calculated: $expectedAmount, Paid: {$entity['amount']}");
+                    return response()->json(['status' => 'error', 'message' => 'Amount verification failed'], 400);
+                }
+                // ---------------------------------------------------------
 
                 // Transaction Reference (used as ID in our DB)
                 $reference = $entity['reference'];
