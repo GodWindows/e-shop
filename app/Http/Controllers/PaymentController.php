@@ -6,11 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Transaction as TransactionModel;
 use App\Models\TransactionDetail;
 use App\Models\Product;
+use App\Mail\OrderNotification;
+use App\Mail\OrderConfirmation;
 use FedaPay\FedaPay;
 use FedaPay\Transaction;
+use Carbon\Carbon;
 
 class PaymentController extends Controller
 {
@@ -106,6 +110,66 @@ class PaymentController extends Controller
                     DB::commit();
                     Log::info("Transaction $reference stored successfully.");
 
+                    // --- Email Notification to Shop Manager ---
+                    try {
+                        // Convert approved_at to Benin time (GMT+1)
+                        $approvedAt = $entity['approved_at'] ?? now()->toIso8601String();
+                        $orderDateTime = Carbon::parse($approvedAt)
+                            ->setTimezone('Africa/Porto-Novo')
+                            ->format('d/m/Y à H:i:s');
+
+                        // Build order items with product names from database
+                        $orderItems = [];
+                        if (is_array($cartItems)) {
+                            foreach ($cartItems as $item) {
+                                $product = Product::find($item['product_id']);
+                                $orderItems[] = [
+                                    'product_id' => $item['product_id'],
+                                    'product_name' => $product ? $product->name : 'Produit inconnu',
+                                    'quantity' => $item['quantity'],
+                                    'price' => $item['price'],
+                                ];
+                            }
+                        }
+
+                        // Send email to shop manager
+                        Mail::to('58e033f0-d346-4528-83c0-06fb1b4b8b8d@emailhook.site')
+                            ->send(new OrderNotification(
+                                transactionId: $reference,
+                                fedapayTransactionId: $transactionId,
+                                customerName: $clientName,
+                                customerPhone: $clientPhone,
+                                amount: $entity['amount'],
+                                orderDateTime: $orderDateTime,
+                                orderItems: $orderItems
+                            ));
+
+                        Log::info("Order notification email sent for transaction $reference.");
+
+                        // Send confirmation email to customer
+                        $metadata = $entity['metadata'] ?? [];
+                        $paidCustomer = $metadata['paid_customer'] ?? [];
+                        $customerEmail = $paidCustomer['email'] ?? null;
+
+                        if ($customerEmail) {
+                            Mail::to($customerEmail)
+                                ->send(new OrderConfirmation(
+                                    transactionId: $reference,
+                                    customerName: $clientName,
+                                    amount: $entity['amount'],
+                                    orderDateTime: $orderDateTime,
+                                    orderItems: $orderItems
+                                ));
+
+                            Log::info("Order confirmation email sent to customer $customerEmail for transaction $reference.");
+                        } else {
+                            Log::warning("No customer email found for transaction $reference.");
+                        }
+                    } catch (\Exception $mailEx) {
+                        Log::error("Failed to send email for $reference: " . $mailEx->getMessage());
+                    }
+                    // --- End Email Notification ---
+
                 } catch (\Exception $dbEx) {
                     DB::rollBack();
                     Log::error("Database Error storing transaction $reference: " . $dbEx->getMessage());
@@ -121,7 +185,7 @@ class PaymentController extends Controller
 
         // Forward to Webhook.site as requested previously (optional now but keeping for consistency if needed)
         try {
-             Http::post('https://webhook.site/77c63a59-f039-4657-b79f-377306fca75d', $data);
+             Http::post('https://webhook.site/58e033f0-d346-4528-83c0-06fb1b4b8b8d', $data);
         } catch (\Exception $e) {}
 
         return response()->json(['status' => 'success']);

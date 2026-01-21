@@ -19,6 +19,7 @@
 
     @php
         $emptyCart = true;
+        $cartTotalAmount = 0;
     
         if (isset($_COOKIE['cart'])) {
             $cookieData = $_COOKIE["cart"]; 
@@ -27,7 +28,6 @@
             foreach ($cookieData as $row) {
                 $cartArray[$row[0]] = $row[1];
             }
-            $cartTotalAmount = 0;
             $emptyCart = false;
         }else {
             $cartArray = array();
@@ -136,7 +136,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p class="small text-muted mb-3">Veuillez entrer vos informations pour continuer.</p>
+                    <p class="small text-muted mb-3">Veuillez entrer vos informations pour continuer. Ces informations seront utilisées pour traiter votre commande.</p>
                     <form>
                         <div class="form-group">
                             <label for="userName">Nom & Prénom</label>
