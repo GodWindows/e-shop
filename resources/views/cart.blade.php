@@ -246,6 +246,17 @@
                             customer_phone: phone,
                             cart_items: cartItems
                         }
+                    },
+                    onComplete: function(response) {
+                        if (response.reason === FedaPay.CHECKOUT_COMPLETED) {
+                            // Payment successful - clear cart and redirect to thank you page
+                            document.cookie = "cart=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                            let transactionRef = response.transaction ? response.transaction.reference : '';
+                            window.location.href = "{{ route('thankyou') }}?ref=" + encodeURIComponent(transactionRef);
+                        } else if (response.reason === FedaPay.DIALOG_DISMISSED) {
+                            // User closed the dialog without completing payment
+                            console.log('Paiement annulé par l\'utilisateur');
+                        }
                     }
                 });
 

@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [AppController::class, 'welcome'])->name('welcome');
 Route::get('/product/{id}', [ProductController::class, 'view'])->name('product.view');
 Route::get('/cart/', [CartController::class, 'view'])->name('cart');
+Route::get('/thankyou', [AppController::class, 'thankyou'])->name('thankyou');
 
 /* ADMIN SIDE */
 Route::middleware(['auth', 'verified'])->group(function () {

@@ -16,4 +16,11 @@ class AppController extends Controller
             "products" => $allProducts,
         ]);
     }
+
+    public function thankyou(Request $request) {
+        $categories = Category::all();
+        return view('thankyou', [
+            "categories" => $categories,
+        ]);
+    }
 }
