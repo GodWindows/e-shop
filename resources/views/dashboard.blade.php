@@ -102,7 +102,7 @@
                         </div>
 
                         <x-input-label for="description" :value="__('Description')" class="mt-4"/>
-                        <textarea id="description" class="block mt-1 rounded-md border-gray-300" name="description"> Décrivez votre produit </textarea>
+                        <textarea id="description" class="block mt-1 rounded-md border-gray-300" name="description"> -- </textarea>
                         <x-input-error :messages="$errors->get('description')" class="mt-2" />
 
                         <x-primary-button class="mt-3"> {{ __('Ajouter un produit') }} </x-primary-button>
