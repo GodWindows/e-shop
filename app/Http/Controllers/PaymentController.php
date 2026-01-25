@@ -133,7 +133,7 @@ class PaymentController extends Controller
                         }
 
                         // Send email to shop manager
-                        Mail::to('58e033f0-d346-4528-83c0-06fb1b4b8b8d@emailhook.site')
+                        Mail::to(env('SHOP_MANAGER_EMAIL'))
                             ->send(new OrderNotification(
                                 transactionId: $reference,
                                 fedapayTransactionId: $transactionId,
@@ -184,9 +184,9 @@ class PaymentController extends Controller
         }
 
         // Forward to Webhook.site as requested previously (optional now but keeping for consistency if needed)
-        try {
-             Http::post('https://webhook.site/58e033f0-d346-4528-83c0-06fb1b4b8b8d', $data);
-        } catch (\Exception $e) {}
+        // try {
+        //      Http::post('https://webhook.site/58e033f0-d346-4528-83c0-06fb1b4b8b8d', $data);
+        // } catch (\Exception $e) {}
 
         return response()->json(['status' => 'success']);
     }
