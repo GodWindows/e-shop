@@ -49,7 +49,7 @@
         </div> -->
         <div class="col-lg-6 col-6 text-right">
             <p class="m-0">Service Client</p>
-            <h5 class="m-0">+229 01 23 45 67 89</h5>
+            <h5 class="m-0">{{ env('STORE_OWNER_PHONE_NUMBER') }}</h5>
         </div>
     </div>
     <!-- Topbar End -->
@@ -120,10 +120,9 @@
         <div class="row px-xl-5 pt-5">
             <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
                 <h5 class="text-secondary text-uppercase mb-4">Get In Touch</h5>
-                <p class="mb-4">No dolore ipsum accusam no lorem. Invidunt sed clita kasd clita et et dolor sed dolor. Rebum tempor no vero est magna amet no</p>
-                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
-                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
-                <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>Cocotomey PK 14</p>
+                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>{{ env('MAIL_USERNAME') }}</p>
+                <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>{{ env('STORE_OWNER_PHONE_NUMBER') }}</p>
             </div>
         </div>
     </div>
