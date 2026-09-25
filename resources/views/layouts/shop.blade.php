@@ -144,7 +144,7 @@
                 <h5 class="text-secondary text-uppercase mb-4">{{ __('Informations') }}</h5>
                 <p class="mb-2">{{ __('Commande en ligne ou par téléphone, du lundi au samedi.') }}</p>
                 <p class="mb-2">{{ __('Paiement mobile money et carte bancaire.') }}</p>
-                <p class="mb-0">{{ __('Livraison à Cotonou et partout au Bénin.') }}</p>
+                <p class="mb-0">{{ __('Livraison à Cotonou et partout en Afrique.') }}</p>
             </div>
         </div>
         <div class="row border-top border-secondary mx-xl-5 py-4">

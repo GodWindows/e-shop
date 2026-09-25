@@ -114,7 +114,7 @@
                     </div>
 
                     <div class="border-top pt-3">
-                        <p class="mb-2"><i class="fa fa-shipping-fast text-primary mr-2"></i>{{ __('Livraison à Cotonou et partout au Bénin.') }}</p>
+                        <p class="mb-2"><i class="fa fa-shipping-fast text-primary mr-2"></i>{{ __('Livraison à Cotonou et partout en Afrique.') }}</p>
                         <p class="mb-2"><i class="fa fa-lock text-primary mr-2"></i>{{ __('Paiement mobile money ou carte bancaire.') }}</p>
                         <p class="mb-0">
                             <i class="fa fa-phone-alt text-primary mr-2"></i>{{ __('Une question ?') }}

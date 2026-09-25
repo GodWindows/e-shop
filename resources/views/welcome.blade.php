@@ -12,7 +12,7 @@
             <div class="col-12">
                 <h1 class="h5 mb-2">{{ env('SHOP_NAME') }} Sarl &mdash; {{ __('vente de matériel et de consommables médicaux') }}</h1>
                 <p class="mb-0">
-                    {{ __('Nous fournissons les cliniques, cabinets, pharmacies et particuliers : mobilier de soin, instruments, consommables et médicaments. Commande en ligne ou par téléphone, livraison à Cotonou et partout dans le monde.') }}
+                    {{ __('Nous fournissons les cliniques, cabinets, pharmacies et particuliers : mobilier de soin, instruments, consommables et médicaments. Commande en ligne ou par téléphone, livraison à Cotonou et partout en Afrique.') }}
                 </p>
             </div>
         </div>
