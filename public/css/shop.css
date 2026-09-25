@@ -1,0 +1,119 @@
+/*  Styles propres à la boutique (chargés après style.css)
+    Fichier séparé pour ne pas être écrasé par la compilation de scss/style.scss  */
+
+/* ---------- Bandeau d'accueil ---------- */
+#header-carousel .carousel-item {
+    height: 430px;
+    background: #FFFFFF;
+}
+
+#header-carousel .carousel-caption {
+    background: linear-gradient(90deg, rgba(61, 70, 77, .92) 0%, rgba(61, 70, 77, .75) 45%, rgba(61, 70, 77, .15) 100%);
+}
+
+#header-carousel .carousel-control-prev {
+    left: auto;
+    right: 60px;
+}
+
+#header-carousel .carousel-control-prev,
+#header-carousel .carousel-control-next {
+    width: 45px;
+    opacity: 1;
+}
+
+@media (max-width: 767.98px) {
+    #header-carousel .carousel-item {
+        height: 300px;
+    }
+
+    #header-carousel .carousel-caption h1 {
+        font-size: 1.75rem;
+    }
+
+    #header-carousel .carousel-caption {
+        background: linear-gradient(90deg, rgba(61, 70, 77, .92) 0%, rgba(61, 70, 77, .8) 100%);
+    }
+}
+
+.product-offer .offer-text {
+    background: rgba(61, 70, 77, .65);
+}
+
+/* ---------- Cartes produit ---------- */
+.product-item {
+    border: 1px solid #EDEDED;
+}
+
+.product-item:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, .08);
+}
+
+.product-name {
+    display: block;
+    color: #3D464D;
+    min-height: 42px;
+}
+
+.product-name:hover {
+    color: #FFD333;
+}
+
+.product-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .5px;
+}
+
+/* ---------- Liste des catégories (colonne de gauche) ---------- */
+.category-list .list-group-item {
+    border: 0;
+    border-bottom: 1px solid #F5F5F5;
+    padding: 10px 0;
+    background: transparent;
+    color: #6C757D;
+}
+
+.category-list .list-group-item:hover {
+    color: #3D464D;
+}
+
+.category-list .list-group-item.active {
+    color: #3D464D;
+    font-weight: 700;
+    background: transparent;
+}
+
+/* ---------- Panier ---------- */
+.cart-table td,
+.cart-table th {
+    vertical-align: middle;
+}
+
+.cart-thumb {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    background: #FFFFFF;
+}
+
+@media (max-width: 575.98px) {
+    .cart-table .quantity {
+        width: 110px !important;
+    }
+}
+
+/* ---------- Fiche produit ---------- */
+.product-meta li {
+    padding: 6px 0;
+    border-bottom: 1px solid #EDEDED;
+}
+
+.product-meta li:last-child {
+    border-bottom: 0;
+}

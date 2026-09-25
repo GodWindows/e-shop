@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 */
 /*GUEST SIDE */
 Route::get('/', [AppController::class, 'welcome'])->name('welcome');
+Route::get('/produits/{category?}', [AppController::class, 'shop'])->whereNumber('category')->name('shop');
 Route::get('/product/{id}', [ProductController::class, 'view'])->name('product.view');
 Route::get('/cart/', [CartController::class, 'view'])->name('cart');
 Route::get('/thankyou', [AppController::class, 'thankyou'])->name('thankyou');

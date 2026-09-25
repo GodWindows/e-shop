@@ -191,6 +191,11 @@ class ProductController extends Controller
     public function view(Request $request, $id)
     {
         $product = Product::find($id);
+
+        if (!$product) {
+            abort(404);
+        }
+
         $relatedProducts = getRelatedProducts($product);
         $categories = Category::all();
 

@@ -108,15 +108,16 @@ function deleteFromCart(productId) {
     refreshCartCount();
     showToast("Supprimé");
 
-    // Update the visual total if function exists
-    if (typeof window.updateCartTotalDisplay === 'function') {
-        window.updateCartTotalDisplay();
-    }
-
-    // Remove the element from the DOM
+    // Remove the element from the DOM first, so the totals below are recomputed
+    // from the lines that actually remain
     const row = document.getElementById('product-row-' + productId);
     if (row) {
         row.remove();
+    }
+
+    // Update the visual total if function exists
+    if (typeof window.updateCartTotalDisplay === 'function') {
+        window.updateCartTotalDisplay();
     }
     
     // Check if cart is empty after deletion

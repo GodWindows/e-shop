@@ -24,11 +24,15 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
+
+    <!-- Styles de la boutique -->
+    <link href="{{asset('css/shop.css')}}" rel="stylesheet">
 </head>
 
 <body>
     <!-- Topbar Start -->
-    <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
+    <div class="container-fluid bg-light">
+        <div class="row align-items-center py-3 px-xl-5 d-none d-lg-flex">
         <div class="col-lg-6">
             <a href="{{ route('welcome') }}" class="text-decoration-none">
                 <span class="h1 text-uppercase text-primary bg-dark px-2">{{ env('SHOP_NAME') }}</span>
@@ -48,8 +52,9 @@
             </form>
         </div> -->
         <div class="col-lg-6 col-6 text-right">
-            <p class="m-0">Service Client</p>
-            <h5 class="m-0">{{ env('STORE_OWNER_PHONE_NUMBER') }}</h5>
+            <p class="m-0">Service client</p>
+            <h5 class="m-0"><a class="text-dark" href="tel:{{ env('STORE_OWNER_PHONE_NUMBER') }}">{{ env('STORE_OWNER_PHONE_NUMBER') }}</a></h5>
+        </div>
         </div>
     </div>
     <!-- Topbar End -->
@@ -59,20 +64,21 @@
         <div class="row px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
                 <a class="btn d-flex align-items-center justify-content-between bg-primary w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; padding: 0 30px;">
-                    <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>Categories</h6>
+                    <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>Catégories</h6>
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
                 <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
                     <div class="navbar-nav w-100">
                         @foreach ($categories as $category)
-                            <a href="#" onClick="return false;" class="nav-item nav-link">{{ $category->name }}</a>
+                            <a href="{{ route('shop', $category->id) }}" class="nav-item nav-link">{{ $category->name }}</a>
                         @endforeach
+                        <a href="{{ route('shop') }}" class="nav-item nav-link font-weight-bold">{{ __('Tous les produits') }}</a>
                     </div>
                 </nav>
             </div>
             <div class="col-lg-9">
                 <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
-                    <a href="" class="text-decoration-none d-block d-lg-none">
+                    <a href="{{ route('welcome') }}" class="text-decoration-none d-block d-lg-none">
                         <span class="h1 text-uppercase text-dark bg-light px-2">{{ env('SHOP_NAME') }}</span>
                         <span class="h1 text-uppercase text-light bg-primary px-2 ml-n1">Sarl</span>
                     </a>
@@ -81,11 +87,12 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="{{route('welcome')}}" class="nav-item nav-link active">Home</a>
-                            <a href="{{route('cart')}}" class="nav-item nav-link">{{ __("Panier") }}</a>
+                            <a href="{{route('welcome')}}" class="nav-item nav-link {{ request()->routeIs('welcome') ? 'active' : '' }}">{{ __('Accueil') }}</a>
+                            <a href="{{route('shop')}}" class="nav-item nav-link {{ request()->routeIs('shop') ? 'active' : '' }}">{{ __('Nos produits') }}</a>
+                            <a href="{{route('cart')}}" class="nav-item nav-link {{ request()->routeIs('cart') ? 'active' : '' }}">{{ __("Panier") }}</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
-                            <a href="" class="btn px-0 ml-3">
+                            <a href="{{ route('cart') }}" class="btn px-0 ml-3">
                                 <i class="fas fa-shopping-cart text-primary"></i>
                                 <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;" id="cartItemsCount">0</span>
                             </a>
@@ -118,11 +125,31 @@
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-secondary mt-5 pt-5">
         <div class="row px-xl-5 pt-5">
-            <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
-                <h5 class="text-secondary text-uppercase mb-4">Get In Touch</h5>
-                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>Cocotomey PK 14</p>
+            <div class="col-lg-4 col-md-6 mb-5 pr-3 pr-xl-5">
+                <h5 class="text-secondary text-uppercase mb-4">{{ __('Nous contacter') }}</h5>
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>Cocotomey PK 14, Abomey-Calavi</p>
                 <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>{{ env('MAIL_USERNAME') }}</p>
                 <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>{{ env('STORE_OWNER_PHONE_NUMBER') }}</p>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-5">
+                <h5 class="text-secondary text-uppercase mb-4">{{ __('Nos catégories') }}</h5>
+                <div class="d-flex flex-column justify-content-start">
+                    @foreach ($categories as $category)
+                        <a class="text-secondary mb-2" href="{{ route('shop', $category->id) }}"><i class="fa fa-angle-right mr-2"></i>{{ $category->name }}</a>
+                    @endforeach
+                    <a class="text-secondary" href="{{ route('shop') }}"><i class="fa fa-angle-right mr-2"></i>{{ __('Tous les produits') }}</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-5">
+                <h5 class="text-secondary text-uppercase mb-4">{{ __('Informations') }}</h5>
+                <p class="mb-2">{{ __('Commande en ligne ou par téléphone, du lundi au samedi.') }}</p>
+                <p class="mb-2">{{ __('Paiement mobile money et carte bancaire.') }}</p>
+                <p class="mb-0">{{ __('Livraison à Cotonou et partout au Bénin.') }}</p>
+            </div>
+        </div>
+        <div class="row border-top border-secondary mx-xl-5 py-4">
+            <div class="col-12 text-center text-md-left">
+                <p class="mb-0">&copy; {{ date('Y') }} {{ env('SHOP_NAME') }} Sarl. {{ __('Tous droits réservés.') }}</p>
             </div>
         </div>
     </div>
