@@ -1,7 +1,7 @@
 @extends('layouts.shop')
 
 @section('page_title')
-    {{ __('Mon panier') }} - {{ env('SHOP_NAME') }}
+    {{ __('Mon panier') }} - {{ config('shop.name') }}
 @endsection
 
 @section('content')
@@ -285,7 +285,7 @@
                 let cartItems = getCartItems();
 
                 let widget = FedaPay.init({
-                    public_key: '{{ env("FEDAPAY_PUBLIC_KEY") }}',
+                    public_key: '{{ config('shop.fedapay.public_key') }}',
                     transaction: {
                         amount: currentTotal,
                         description: 'Acheter mon produit',

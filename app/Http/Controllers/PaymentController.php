@@ -39,8 +39,8 @@ class PaymentController extends Controller
 
         // Configure FedaPay
         // WARNING: Ensure FEDAPAY_SECRET_KEY is set in your .env file
-        FedaPay::setApiKey(env('FEDAPAY_SECRET_KEY', 'sk_sandbox_YOUR_KEY_HERE')); 
-        FedaPay::setEnvironment(env('FEDAPAY_ENVIRONMENT', 'sandbox'));
+        FedaPay::setApiKey(config('shop.fedapay.secret_key')); 
+        FedaPay::setEnvironment(config('shop.fedapay.environment'));
 
         try {
             // Retrieve Transaction from FedaPay to verify status
@@ -133,7 +133,7 @@ class PaymentController extends Controller
                         }
 
                         // Send email to shop manager
-                        Mail::to(env('SHOP_MANAGER_EMAIL'))
+                        Mail::to(config('shop.manager_email'))
                             ->send(new OrderNotification(
                                 transactionId: $reference,
                                 fedapayTransactionId: $transactionId,

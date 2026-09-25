@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <title>@yield('page_title')</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="{{ env('APP_DESCRIPTION', 'This is a web store')}}" name="keywords">
-    <meta content="{{ env('APP_DESCRIPTION', 'This is a web store')}}" name="description">
+    <meta content="{{ config('shop.tagline')}}" name="keywords">
+    <meta content="{{ config('shop.tagline')}}" name="description">
     
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -35,7 +35,7 @@
         <div class="row align-items-center py-3 px-xl-5 d-none d-lg-flex">
         <div class="col-lg-6">
             <a href="{{ route('welcome') }}" class="text-decoration-none">
-                <span class="h1 text-uppercase text-primary bg-dark px-2">{{ env('SHOP_NAME') }}</span>
+                <span class="h1 text-uppercase text-primary bg-dark px-2">{{ config('shop.name') }}</span>
                 <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Sarl</span>
             </a>
         </div>
@@ -53,7 +53,7 @@
         </div> -->
         <div class="col-lg-6 col-6 text-right">
             <p class="m-0">Service client</p>
-            <h5 class="m-0"><a class="text-dark" href="tel:{{ env('STORE_OWNER_PHONE_NUMBER') }}">{{ env('STORE_OWNER_PHONE_NUMBER') }}</a></h5>
+            <h5 class="m-0"><a class="text-dark" href="tel:{{ config('shop.phone') }}">{{ config('shop.phone') }}</a></h5>
         </div>
         </div>
     </div>
@@ -79,7 +79,7 @@
             <div class="col-lg-9">
                 <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
                     <a href="{{ route('welcome') }}" class="text-decoration-none d-block d-lg-none">
-                        <span class="h1 text-uppercase text-dark bg-light px-2">{{ env('SHOP_NAME') }}</span>
+                        <span class="h1 text-uppercase text-dark bg-light px-2">{{ config('shop.name') }}</span>
                         <span class="h1 text-uppercase text-light bg-primary px-2 ml-n1">Sarl</span>
                     </a>
                     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -128,8 +128,8 @@
             <div class="col-lg-4 col-md-6 mb-5 pr-3 pr-xl-5">
                 <h5 class="text-secondary text-uppercase mb-4">{{ __('Nous contacter') }}</h5>
                 <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>Cocotomey PK 14, Abomey-Calavi</p>
-                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>{{ env('MAIL_USERNAME') }}</p>
-                <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>{{ env('STORE_OWNER_PHONE_NUMBER') }}</p>
+                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>{{ config('shop.email') }}</p>
+                <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>{{ config('shop.phone') }}</p>
             </div>
             <div class="col-lg-4 col-md-6 mb-5">
                 <h5 class="text-secondary text-uppercase mb-4">{{ __('Nos catégories') }}</h5>
@@ -149,7 +149,7 @@
         </div>
         <div class="row border-top border-secondary mx-xl-5 py-4">
             <div class="col-12 text-center text-md-left">
-                <p class="mb-0">&copy; {{ date('Y') }} {{ env('SHOP_NAME') }} Sarl. {{ __('Tous droits réservés.') }}</p>
+                <p class="mb-0">&copy; {{ date('Y') }} {{ config('shop.name') }} Sarl. {{ __('Tous droits réservés.') }}</p>
             </div>
         </div>
     </div>

@@ -1,7 +1,7 @@
 @extends('layouts.shop')
 
 @section('page_title')
-    {{ $product->name }} - {{ env('SHOP_NAME') }}
+    {{ $product->name }} - {{ config('shop.name') }}
 @endsection
 
 @section('content')
@@ -118,7 +118,7 @@
                         <p class="mb-2"><i class="fa fa-lock text-primary mr-2"></i>{{ __('Paiement mobile money ou carte bancaire.') }}</p>
                         <p class="mb-0">
                             <i class="fa fa-phone-alt text-primary mr-2"></i>{{ __('Une question ?') }}
-                            <a class="text-dark" href="tel:{{ env('STORE_OWNER_PHONE_NUMBER') }}">{{ env('STORE_OWNER_PHONE_NUMBER') }}</a>
+                            <a class="text-dark" href="tel:{{ config('shop.phone') }}">{{ config('shop.phone') }}</a>
                         </p>
                     </div>
                 </div>

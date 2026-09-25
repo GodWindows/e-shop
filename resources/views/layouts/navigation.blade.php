@@ -12,7 +12,7 @@
                  -->
                 <div class="col-lg-4 mt-4">
                     <a href="{{ route('dashboard') }}" class="text-decoration-none">
-                        <span class="text-4xl uppercase text-primary bg-black px-2">{{ env('SHOP_NAME') }}</span>
+                        <span class="text-4xl uppercase text-primary bg-black px-2">{{ config('shop.name') }}</span>
                         <span class="text-4xl uppercase text-black bg-primary px-2 -ml-1">Sarl</span>
                     </a>
                 </div>

@@ -1,7 +1,7 @@
 @extends('layouts.shop')
 
 @section('page_title')
-    {{ env('SHOP_NAME') }} Sarl - {{ __('Vente de matériel médical') }}
+    {{ config('shop.name') }} Sarl - {{ __('Vente de matériel médical') }}
 @endsection
 
 @section('content')
@@ -10,7 +10,7 @@
     <div class="container-fluid pt-4 pb-2">
         <div class="row px-xl-5">
             <div class="col-12">
-                <h1 class="h5 mb-2">{{ env('SHOP_NAME') }} Sarl &mdash; {{ __('vente de matériel et de consommables médicaux') }}</h1>
+                <h1 class="h5 mb-2">{{ config('shop.name') }} Sarl &mdash; {{ __('vente de matériel et de consommables médicaux') }}</h1>
                 <p class="mb-0">
                     {{ __('Nous fournissons les cliniques, cabinets, pharmacies et particuliers : mobilier de soin, instruments, consommables et médicaments. Commande en ligne ou par téléphone, livraison à Cotonou et partout en Afrique.') }}
                 </p>
@@ -62,11 +62,11 @@
                             </div>
                         @empty
                             <div class="carousel-item active">
-                                <img class="img-fluid" src="{{ asset('img/medical-hero.jpg') }}" alt="{{ env('SHOP_NAME') }}">
+                                <img class="img-fluid" src="{{ asset('img/medical-hero.jpg') }}" alt="{{ config('shop.name') }}">
                                 <div class="carousel-caption d-flex flex-column align-items-start justify-content-center text-left">
                                     <div class="p-3 p-md-5" style="max-width: 560px;">
-                                        <h2 class="display-4 text-white mb-3">{{ __('Bienvenue chez') }} {{ env('SHOP_NAME') }}</h2>
-                                        <p class="text-white">{{ env('APP_DESCRIPTION', 'Des produits de qualité, livrés près de chez vous.') }}</p>
+                                        <h2 class="display-4 text-white mb-3">{{ __('Bienvenue chez') }} {{ config('shop.name') }}</h2>
+                                        <p class="text-white">{{ config('shop.tagline') }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -218,8 +218,8 @@
                     <p class="text-secondary mb-4">
                         {{ __('Notre service client est disponible pour vous conseiller, établir un devis et suivre votre commande.') }}
                     </p>
-                    <a class="btn btn-primary px-4 py-2" href="tel:{{ env('STORE_OWNER_PHONE_NUMBER') }}">
-                        <i class="fa fa-phone-alt mr-2"></i>{{ env('STORE_OWNER_PHONE_NUMBER') }}
+                    <a class="btn btn-primary px-4 py-2" href="tel:{{ config('shop.phone') }}">
+                        <i class="fa fa-phone-alt mr-2"></i>{{ config('shop.phone') }}
                     </a>
                 </div>
             </div>

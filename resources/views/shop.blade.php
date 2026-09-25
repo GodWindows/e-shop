@@ -1,7 +1,7 @@
 @extends('layouts.shop')
 
 @section('page_title')
-    {{ $currentCategory ? $currentCategory->name : __('Tous nos produits') }} - {{ env('SHOP_NAME') }}
+    {{ $currentCategory ? $currentCategory->name : __('Tous nos produits') }} - {{ config('shop.name') }}
 @endsection
 
 @section('content')
@@ -46,7 +46,7 @@
                 <div class="bg-light p-30 mb-30">
                     <h5 class="font-weight-semi-bold mb-3">{{ __('Besoin d\'aide ?') }}</h5>
                     <p class="mb-2">{{ __('Appelez-nous pour un conseil ou un devis :') }}</p>
-                    <a class="h5 text-dark" href="tel:{{ env('STORE_OWNER_PHONE_NUMBER') }}">{{ env('STORE_OWNER_PHONE_NUMBER') }}</a>
+                    <a class="h5 text-dark" href="tel:{{ config('shop.phone') }}">{{ config('shop.phone') }}</a>
                 </div>
             </div>
 
