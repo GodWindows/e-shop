@@ -10,7 +10,7 @@
     <div class="container-fluid pt-4 pb-2">
         <div class="row px-xl-5">
             <div class="col-12">
-                <h1 class="h5 mb-2">{{ config('shop.name') }} Sarl &mdash; {{ __('vente de matériel et de consommables médicaux') }}</h1>
+                <h1 class="h5 mb-2">{{ config('shop.name') }} Sarl - {{ __('vente de matériel et de consommables médicaux') }}</h1>
                 <p class="mb-0">
                     {{ __('Nous fournissons les cliniques, cabinets, pharmacies et particuliers : mobilier de soin, instruments, consommables et médicaments. Commande en ligne ou par téléphone, livraison à Cotonou et partout en Afrique.') }}
                 </p>
@@ -92,7 +92,7 @@
                     <div class="offer-text">
                         <h6 class="text-primary text-uppercase mb-1">
                             @if ($promoProduct && $promoProduct->price > 0)
-                                {{ __('Bons plans') }} &mdash; -{{ (int) round(100 - ($promoProduct->discount_price * 100 / $promoProduct->price)) }}%
+                                {{ __('Bons plans') }} -{{ (int) round(100 - ($promoProduct->discount_price * 100 / $promoProduct->price)) }}%
                             @else
                                 {{ __('Bons plans') }}
                             @endif
