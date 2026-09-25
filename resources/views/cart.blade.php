@@ -237,8 +237,7 @@
                 
                 // Initialize FedaPay with dynamic amount and custom metadata
                 let widget = FedaPay.init({
-                    //public_key: 'pk_sandbox_1BC-3mOEqiAXxg5EWRe0Wude',
-                    public_key: 'pk_live_sdCP6lZsiuy1mzykeI1_we5l',
+                    public_key: '{{ env("FEDAPAY_PUBLIC_KEY") }}',
                     transaction: {
                         amount: currentTotal,
                         description: 'Acheter mon produit',
