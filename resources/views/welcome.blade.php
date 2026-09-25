@@ -62,7 +62,7 @@
                             </div>
                         @empty
                             <div class="carousel-item active">
-                                <img class="img-fluid" src="{{ asset('img/carousel-1.jpg') }}" alt="{{ env('SHOP_NAME') }}">
+                                <img class="img-fluid" src="{{ asset('img/medical-hero.jpg') }}" alt="{{ env('SHOP_NAME') }}">
                                 <div class="carousel-caption d-flex flex-column align-items-start justify-content-center text-left">
                                     <div class="p-3 p-md-5" style="max-width: 560px;">
                                         <h2 class="display-4 text-white mb-3">{{ __('Bienvenue chez') }} {{ env('SHOP_NAME') }}</h2>
@@ -88,7 +88,7 @@
             </div>
             <div class="col-lg-4">
                 <div class="product-offer mb-30" style="height: 200px;">
-                    <img class="img-fluid" src="{{ $promoProduct ? asset('storage/' . image($promoProduct)) : asset('img/offer-1.jpg') }}" alt="{{ __('Promotions') }}">
+                    <img class="img-fluid" src="{{ $promoProduct ? asset('storage/' . image($promoProduct)) : asset('img/medical-offer-1.jpg') }}" alt="{{ __('Promotions') }}">
                     <div class="offer-text">
                         <h6 class="text-primary text-uppercase mb-1">
                             @if ($promoProduct && $promoProduct->price > 0)
@@ -106,7 +106,7 @@
                     </div>
                 </div>
                 <div class="product-offer mb-30" style="height: 200px;">
-                    <img class="img-fluid" src="{{ $newProduct ? asset('storage/' . image($newProduct)) : asset('img/offer-2.jpg') }}" alt="{{ __('Nouveautés') }}">
+                    <img class="img-fluid" src="{{ $newProduct ? asset('storage/' . image($newProduct)) : asset('img/medical-offer-2.jpg') }}" alt="{{ __('Nouveautés') }}">
                     <div class="offer-text">
                         <h6 class="text-primary text-uppercase mb-1">{{ __('Nouveautés') }}</h6>
                         <h3 class="text-white mb-3 text-center px-3">{{ __('Nos derniers arrivages') }}</h3>

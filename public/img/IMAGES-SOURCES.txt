@@ -1,0 +1,20 @@
+Images d'illustration utilisées par la boutique (affichées uniquement quand aucun
+produit n'est disponible pour la section concernée).
+
+Toutes sont sous licence CC0 1.0 (domaine public) : utilisation commerciale libre,
+sans obligation d'attribution. Les sources sont conservées ici par transparence.
+
+medical-hero.jpg      Chambre d'hôpital (bandeau « Notre sélection »)
+                      Auteur : sreejagroups — CC0 1.0
+                      https://wordpress.org/photos/photo/8266470866/
+
+medical-offer-1.jpg   Stéthoscope (encart « Bons plans »)
+                      Auteur : Negative Space — CC0 1.0
+                      https://stocksnap.io/photo/stethoscope-medical-RAW1RLRTM7
+
+medical-offer-2.jpg   Consommables médicaux en salle de soins (encart « Nouveautés »)
+                      Auteur : Nilo Velez — CC0 1.0
+                      https://wordpress.org/photos/photo/164679d574/
+
+Les images carousel-*.jpg, offer-*.jpg, product-*.jpg, vendor-*.jpg proviennent du
+gabarit d'origine (eShopper) et ne sont plus utilisées par la boutique.
